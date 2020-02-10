@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sioo.dao.UserProductBalanceMapper">
+  <resultMap id="BaseResultMap" type="com.sioo.user.api.po.UserProductBalance">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="expired_date" jdbcType="TIMESTAMP" property="expiredDate" />
+    <result column="balance" jdbcType="BIGINT" property="balance" />
+    <result column="frozen_amount" jdbcType="BIGINT" property="frozenAmount" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="updater" jdbcType="VARCHAR" property="updater" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, product_id, product_name, status, start_date, expired_date, balance, frozen_amount, 
+    create_date, creator, update_date, updater
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_product_balance
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_product_balance
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sioo.user.api.po.UserProductBalance">
+    insert into user_product_balance (id, product_id, product_name, 
+      status, start_date, expired_date, 
+      balance, frozen_amount, create_date, 
+      creator, update_date, updater
+      )
+    values (#{id,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{startDate,jdbcType=TIMESTAMP}, #{expiredDate,jdbcType=TIMESTAMP}, 
+      #{balance,jdbcType=BIGINT}, #{frozenAmount,jdbcType=BIGINT}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{creator,jdbcType=VARCHAR}, #{updateDate,jdbcType=TIMESTAMP}, #{updater,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sioo.user.api.po.UserProductBalance">
+    insert into user_product_balance
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="expiredDate != null">
+        expired_date,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="frozenAmount != null">
+        frozen_amount,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="updater != null">
+        updater,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiredDate != null">
+        #{expiredDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=BIGINT},
+      </if>
+      <if test="frozenAmount != null">
+        #{frozenAmount,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sioo.user.api.po.UserProductBalance">
+    update user_product_balance
+    <set>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiredDate != null">
+        expired_date = #{expiredDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=BIGINT},
+      </if>
+      <if test="frozenAmount != null">
+        frozen_amount = #{frozenAmount,jdbcType=BIGINT},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        updater = #{updater,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sioo.user.api.po.UserProductBalance">
+    update user_product_balance
+    set product_id = #{productId,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      expired_date = #{expiredDate,jdbcType=TIMESTAMP},
+      balance = #{balance,jdbcType=BIGINT},
+      frozen_amount = #{frozenAmount,jdbcType=BIGINT},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      updater = #{updater,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
